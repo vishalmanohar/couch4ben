@@ -1,9 +1,5 @@
 package couch4ben;
 
-import org.databene.commons.ConfigurationError;
-import org.databene.commons.StringUtil;
-import org.databene.jdbacl.DBUtil;
-import org.databene.jdbacl.JDBCConnectData;
 import org.databene.model.data.DataModel;
 
 public class CouchDBUtil {

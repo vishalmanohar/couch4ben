@@ -170,10 +170,14 @@ public class CouchDB extends AbstractStorageSystem {
 		if (entityType == null)
 			throw new RuntimeException("Trying to persist an entity without type: " + entity);
 		DBObject doc = entity2objectConverter.convert(entity);
-        db.create(doc);
-	}
+        store(doc);
+    }
 
-	public void update(Entity entity) {
+    public void store(DBObject doc) {
+        db.create(doc);
+    }
+
+    public void update(Entity entity) {
 		LOGGER.debug("update({})", entity);
 		DBObject doc = entity2objectConverter.convert(entity);
 		db.update(doc);
@@ -204,6 +208,13 @@ public class CouchDB extends AbstractStorageSystem {
 //			}
 //		}
 //	}
+
+    public void deleteAll() {
+        List<DBObject> allDocuments = getAllDocuments();
+        for(DBObject doc : allDocuments){
+            db.delete(doc);
+        }
+    }
 
 	public ComplexTypeDescriptor getOrCreatePartType(String typeName) {
 		ComplexTypeDescriptor type = (ComplexTypeDescriptor) getTypeDescriptor(typeName);
