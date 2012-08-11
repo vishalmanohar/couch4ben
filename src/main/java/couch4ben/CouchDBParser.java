@@ -21,14 +21,14 @@ public class CouchDBParser extends AbstractBeneratorDescriptorParser {
 
     public CouchDBParser() {
 	    super(EL_COUCHDB,
-	    		CollectionUtil.toSet(ATT_ID),
+	    		CollectionUtil.toSet(ATT_DATABASE),
 	    		CollectionUtil.toSet(ATT_ENVIRONMENT, ATT_ON_ERROR),
 	    		BeneratorRootStatement.class, IfStatement.class, WhileStatement.class);
     }
 
 	@Override
 	public CouchDBStatement doParse(Element element, Statement[] parentPath, BeneratorParseContext context) {
-		String id = element.getAttribute("id");
+		String id = element.getAttribute(ATT_DATABASE);
         Expression<String> envEx = parseScriptableStringAttribute(ATT_ENVIRONMENT, element);
         if (envEx == null)
         	throw new ConfigurationError("no environment specified in <" + EL_COUCHDB + "> element");

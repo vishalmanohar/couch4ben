@@ -13,14 +13,7 @@ public abstract class CouchDBTestUtil {
 
 	public static CouchDB createCouchDBClient(String environment,
 			DataModel dataModel) {
-		//JDBCConnectData connectData = DBUtil.getConnectData(environment);
-        CouchDB db = new CouchDB("db", dataModel);
-		//String[] tokens = StringUtil.splitOnLastSeparator(connectData.url, ':');
-		db.setHost("localhost");
-        db.setPort(5984);
-		db.setDatabase("test");
-		db.getTypeDescriptors(); // cause the database to be initialized
-		return db;
+        return CouchDBUtil.createCouchDBForEnvironment(environment, "db", dataModel);
 	}
 
 

@@ -30,7 +30,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
         parseAndExecute(
                 "<setup>" +
                         "	<import platforms='couchdb' />" +
-                        "	<couchdb id='db' environment='" + TEST_ENVIRONMENT + "' />" +
+                        "	<couchdb database='db' environment='" + TEST_ENVIRONMENT + "' />" +
                         "	<generate type='mit_user' count='3' consumer='db'>" +
                         "		<attribute name='name' type='string' />" +
                         "		<attribute name='age' type='int' min='18' max='78' />" +
@@ -53,7 +53,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
         parseAndExecute(
                 "<setup>" +
                         "	<import platforms='couchdb' />" +
-                        "	<couchdb id='db' environment='" + TEST_ENVIRONMENT + "' />" +
+                        "	<couchdb database='db' environment='" + TEST_ENVIRONMENT + "' />" +
                         "	<generate type='mit_user' count='100' consumer='db'>" +
                         "		<attribute name='name' type='string' />" +
                         "		<attribute name='age' type='int' min='18' max='78' />" +

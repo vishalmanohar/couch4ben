@@ -27,7 +27,7 @@ public class CouchDB extends AbstractStorageSystem {
 	private String password;
 
 	private boolean connected;
-     CouchDbConnector db;
+    CouchDbConnector db;
     private Entity2DbObjectConverter entity2objectConverter;
 
 	private DefaultDescriptorProvider descriptorProvider;
