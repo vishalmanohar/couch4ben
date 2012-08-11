@@ -20,7 +20,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
     @Before
     @After
     public void clearCollection() {
-        CouchDB db = CouchDBTestUtil.createAndClearCouchClient(TEST_ENVIRONMENT, "mit_user", dataModel);
+        CouchDB db = CouchDBTestUtil.createAndClearCouchClient(TEST_ENVIRONMENT, dataModel);
         context.set("db", db);
     }
 
