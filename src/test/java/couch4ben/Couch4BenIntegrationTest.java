@@ -21,7 +21,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
     @After
     public void clearCollection() {
         CouchDB db = CouchDBTestUtil.createAndClearCouchClient(TEST_ENVIRONMENT, dataModel);
-        context.set("db", db);
+        context.setSetting("db", db);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
                         "</setup>");
 
         // verify results
-        CouchDB db = (CouchDB) context.get("db");
+        CouchDB db = (CouchDB) context.getSetting("db");
         verifyPersonConstraints(db, 3, null, false, 2, 2);
     }
 
@@ -65,7 +65,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
                         "</setup>");
 
         // verify results
-        CouchDB db = (CouchDB) context.get("db");
+        CouchDB db = (CouchDB) context.getSetting("db");
         verifyPersonConstraints(db, 100, null, false, 1, 3);
     }
 
@@ -73,7 +73,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
     @Ignore("not implemented")
     public void testPlainUpdate() {
         CouchDB db = CouchDBUtil.createCouchDBForEnvironment(TEST_ENVIRONMENT, "db", context.getDataModel());
-        context.set("db", db);
+        context.setSetting("db", db);
         createPersons(db);
         // iterate persons and set each persons age to 33
         parseAndExecute(
@@ -89,7 +89,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
     @Ignore("not implemented")
     public void testSubUpdate() {
         CouchDB db = CouchDBUtil.createCouchDBForEnvironment(TEST_ENVIRONMENT, "db", context.getDataModel());
-        context.set("db", db);
+        context.setSetting("db", db);
         createPersons(db);
         // iterate persons and set each persons age to 33
         parseAndExecute(
