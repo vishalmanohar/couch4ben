@@ -186,11 +186,9 @@ public class CouchDB extends AbstractStorageSystem {
 	// other methods from StorageSystem interface ----------------------------------------------------------------------
 	
 	public void flush() {
-		// TODO does Mongo DB have any kind of bulk update?
 	}
 	
 	public void close() {
-		// TODO nothing to do here?
 	}
 	
 //	public void beConnected() {

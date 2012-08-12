@@ -30,22 +30,24 @@ import org.databene.script.Expression;
 public class CouchDBStatement implements Statement {
 	
 	private String id;
-	private Expression<String> envEx;
+    private String dbName;
+    private Expression<String> envEx;
 	private Expression<ErrorHandler> errHandlerEx;
 
-	public CouchDBStatement(String id, Expression<String> envEx, Expression<ErrorHandler> errHandlerEx) {
+	public CouchDBStatement(String id, String dbName, Expression<String> envEx, Expression<ErrorHandler> errHandlerEx) {
 		this.id = id;
-		this.envEx = envEx;
+        this.dbName = dbName;
+        this.envEx = envEx;
 		this.errHandlerEx = errHandlerEx;
 	}
 
 	public boolean execute(BeneratorContext context) {
 		try {
 			String environment = context.resolveRelativeUri(envEx.evaluate(context));
-			CouchDB db = CouchDBUtil.createCouchDBForEnvironment(environment, id, context.getDataModel());
+			CouchDB db = CouchDBUtil.createCouchDBForEnvironment(environment, dbName, context.getDataModel());
 			context.set(id, db);
 		} catch (Exception e) {
-			getErrorHandler(context).handleError("Error connecting MongoDB", e);
+			getErrorHandler(context).handleError("Error connecting CouchDB", e);
 		}
     	return true;
 	}

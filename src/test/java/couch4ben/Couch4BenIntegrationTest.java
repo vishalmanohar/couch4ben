@@ -16,12 +16,13 @@ import static org.junit.Assert.*;
 public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
 
     private static final String TEST_ENVIRONMENT = "couchdbtest";
+    private CouchDB couchDB;
 
     @Before
     @After
     public void clearCollection() {
-        CouchDB db = CouchDBTestUtil.createAndClearCouchClient(TEST_ENVIRONMENT, dataModel);
-        context.setSetting("db", db);
+        couchDB = CouchDBTestUtil.createAndClearCouchClient(TEST_ENVIRONMENT, "couch-db-test", dataModel);
+        context.set("db", couchDB);
     }
 
     @Test
@@ -30,7 +31,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
         parseAndExecute(
                 "<setup>" +
                         "	<import platforms='couchdb' />" +
-                        "	<couchdb database='db' environment='" + TEST_ENVIRONMENT + "' />" +
+                        "	<couchdb database='db' name='couch-db-test' environment='" + TEST_ENVIRONMENT + "' />" +
                         "	<generate type='mit_user' count='3' consumer='db'>" +
                         "		<attribute name='name' type='string' />" +
                         "		<attribute name='age' type='int' min='18' max='78' />" +
@@ -41,9 +42,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
                         "	</generate>" +
                         "</setup>");
 
-        // verify results
-        CouchDB db = (CouchDB) context.getSetting("db");
-        verifyPersonConstraints(db, 3, null, false, 2, 2);
+        verifyPersonConstraints(couchDB, 3, null, false, 2, 2);
     }
 
 
@@ -53,7 +52,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
         parseAndExecute(
                 "<setup>" +
                         "	<import platforms='couchdb' />" +
-                        "	<couchdb database='db' environment='" + TEST_ENVIRONMENT + "' />" +
+                        "	<couchdb database='db' name = 'couch-db-test' environment='" + TEST_ENVIRONMENT + "' />" +
                         "	<generate type='mit_user' count='100' consumer='db'>" +
                         "		<attribute name='name' type='string' />" +
                         "		<attribute name='age' type='int' min='18' max='78' />" +
@@ -65,8 +64,7 @@ public class Couch4BenIntegrationTest extends BeneratorIntegrationTest{
                         "</setup>");
 
         // verify results
-        CouchDB db = (CouchDB) context.getSetting("db");
-        verifyPersonConstraints(db, 100, null, false, 1, 3);
+        verifyPersonConstraints(couchDB, 100, null, false, 1, 3);
     }
 
     @Test
