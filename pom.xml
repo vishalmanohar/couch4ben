@@ -10,7 +10,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.databene</groupId>
+            <groupId>vmnaik.databene</groupId>
             <artifactId>databene-benerator</artifactId>
             <version>0.7.6</version>
         </dependency>
