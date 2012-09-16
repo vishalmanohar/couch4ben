@@ -1,3 +1,6 @@
 Benerator is a fine tool to generate test data into a database which you can use to load test your application.
 With couch4ben you can use Benerator against CouchDB. couch4ben is essentially a port of mongo4ben for couchdb.
 This is a work in progress. 
+
+
+Couch4Ben currently uses a fork of Benerator that is available here https://github.com/vishalmanohar/databene-benerator
