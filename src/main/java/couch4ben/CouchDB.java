@@ -170,6 +170,7 @@ public class CouchDB extends AbstractStorageSystem {
 		if (entityType == null)
 			throw new RuntimeException("Trying to persist an entity without type: " + entity);
 		DBObject doc = entity2objectConverter.convert(entity);
+        doc.put("type", entity.type());
         store(doc);
     }
 
